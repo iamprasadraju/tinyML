@@ -25,18 +25,3 @@ class KNN():
         return np.array(predictions)
     
 
-(train_data, train_labels), (test_data, test_labels) = load_mnist()
-
-
-train_data = train_data.reshape(train_data.shape[0], -1)
-test_data = test_data.reshape(test_data.shape[0], -1)
-
-
-knn = KNN(k=3)
-knn.fit(train_data, train_labels)
-
-predicted_labels = knn.predict(test_data)
-
-
-accuracy = np.mean(predicted_labels == test_labels)
-print(f"KNN Accuracy: {accuracy * 100:.2f}% ")
