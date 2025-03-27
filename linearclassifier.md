@@ -65,10 +65,23 @@ Ans : To determine if the weights W (and bias b) of a linear classifier are "goo
 
  1. Define a loss function. The goal during training is to minimize the loss function.
 
- 		- If the loss is high, it indicates that the weights are not good because the model's predictions are far from the true labels.
+	- If the loss is high, it indicates that the weights are not good because the model's predictions are far from the true labels.
 
- 		-  If the loss is low, it indicates that the model is doing well and its weights are more likely to be good.
+ 	-  If the loss is low, it indicates that the model is doing well and its weights are more likely to be good.
 
 2. Come up with a way of efficiently finding the parameters that minimize the loss function (optimization) based metrices (like accuracy, precision, recall, and F1-score, and considering factors like bias and variance).
 
 
+
+**Solution :**
+
+There are several loss functions commonly used for linear classifiers. The choice of loss function depends on the type of problem (e.g., regression, binary classification, multi-class classification).
+
+
+1. Mean Squared Error (MSE)
+
+	In linear regression or a regression-based setup for classification (e.g., when we output continuous values instead of discrete class labels), the loss function can be the Mean Squared Error (MSE), which measures the squared difference between the predicted output and the true label.
+
+	\[
+\text{MSE}(y, \hat{y}) = \frac{1}{2} \sum_{i=1}^{N} (y_i - f(x_i, W))^2
+\]
