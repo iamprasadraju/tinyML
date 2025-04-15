@@ -22,7 +22,7 @@ The model begins training with randomized weights and biases near zero, and then
 4. Return to step one and repeat the process until the model can't reduce the loss any further.
 
 
-![alt text](image-1.png)
+![alt text](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/gradient-descent.png)
 
 <hr></hr>
 
@@ -772,4 +772,4 @@ Use the new weight and bias to calculate the loss and repeat. Completing the pro
 
 You can see that the loss gets lower with each updated weight and bias. In this example, we stopped after six iterations. In practice, a model trains until it converges. When a model converges, additional iterations don't reduce loss more because gradient descent has found the weights and bias that nearly minimize the loss.
 
-![alt text](image-2.png)
+![alt text](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/convergence.png)
