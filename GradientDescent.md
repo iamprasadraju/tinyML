@@ -141,5 +141,3 @@ As you can see, the loss decreases with every iteration as the weights and bias 
 ![Convergence](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/convergence.png)
 
 ---
-
-Let me know if you'd like a Python code example to simulate this!
