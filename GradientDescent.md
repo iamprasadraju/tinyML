@@ -1,35 +1,32 @@
+Here's your entire content converted into **correct markdown syntax**, including images, tables, math, and formatting:
+
+---
+
 # Gradient Descent
 
-Reference -> https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent
+**Reference** → [Google ML Crash Course - Gradient Descent](https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent)  
+**Video on Gradient Descent** → [YouTube](https://www.youtube.com/watch?v=QoK1nNAURw4)
 
-video on gradient descent-> https://www.youtube.com/watch?v=QoK1nNAURw4
+Gradient descent is a mathematical technique (optimization algorithm) that iteratively finds the weights and bias that produce the model with the lowest loss. It works by repeating the following process for a number of user-defined iterations:
 
-Gradient descent is a mathematical technique (optimizatiion algorithm) that iteratively finds the weights and bias that produce the model with the lowest loss. Gradient descent finds the best weight and bias by repeating the following process for a number of user-defined iterations.
+---
 
+### Steps of Gradient Descent
 
-
-
-The model begins training with randomized weights and biases near zero, and then repeats the following steps:
-
-
+The model begins training with randomized weights and biases near zero and then repeats:
 
 1. Calculate the loss with the current weight and bias.
+2. Determine the direction to move the weights and bias to reduce loss.
+3. Move the weights and bias a small amount in that direction.
+4. Repeat until the model can’t reduce the loss further.
 
-2. Determine the direction to move the weights and bias that reduce loss.
+![Gradient Descent](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/gradient-descent.png)
 
-3. Move the weight and bias values a small amount in the direction that reduces loss.
+---
 
-4. Return to step one and repeat the process until the model can't reduce the loss any further.
+## Math Behind Gradient Descent
 
-
-![alt text](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/gradient-descent.png)
-
-<hr></hr>
-
-**Math behind gradient descent**
-
-Example:
-
+### Example Dataset
 
 | Pounds in 1000s (Feature) | Miles per Gallon (Label) |
 |---------------------------|---------------------------|
@@ -41,724 +38,92 @@ Example:
 | 4.42                      | 14                        |
 | 2.37                      | 24                        |
 
+---
 
+### 1. Initialize Weights and Bias
 
-1. The model starts training by setting the weights and bias to zero.
+```
+Weight: 0
+Bias: 0
+Model Equation: y = 0 + 0 * x₁
+```
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>W</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mo>:</mo>
-      <mtext>&#xA0;</mtext>
-      <mn>0</mn>
-    </mrow>
-  </mstyle>
-</math>
-&nbsp;
+---
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>B</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>:</mo>
-      <mtext>&#xA0;</mtext>
-      <mn>0</mn>
-    </mrow>
-  </mstyle>
-</math>
-&nbsp;
+### 2. Calculate MSE Loss
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>y</mi>
-      <mo>=</mo>
-      <mn>0</mn>
-      <mo>+</mo>
-      <mn>0</mn>
-      <mo stretchy="false">(</mo>
-      <msub>
-        <mi>x</mi>
-        <mn>1</mn>
-      </msub>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </mstyle>
-</math>
-&nbsp;
+MSE (Mean Squared Error) formula:
 
+```
+Loss = (1/M) * Σ (f(w, b)(xᵢ) - yᵢ)²
+```
 
-2. Calculate MSE loss with the current model parameters:
+Given:
+```
+f(w, b)(x) = w*x + b
+```
 
+Using the current weights (0) and bias (0):
 
-    We'll Calculate MSE Using : <math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mn>1</mn>
-    <mi>M</mi>
-  </mfrac>
-  <munderover>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>M</mi>
-    </mrow>
-  </munderover>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>f</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>w</mi>
-      <mo>,</mo>
-      <mi>b</mi>
-    </mrow>
-  </msub>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2212;<!-- − --></mo>
-  <msub>
-    <mi>y</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <msup>
-    <mo stretchy="false">)</mo>
-    <mn>2</mn>
-  </msup>
-</math>
+```
+Loss = ((18 - 0)² + (15 - 0)² + (18 - 0)² + (16 - 0)² + 
+        (15 - 0)² + (14 - 0)² + (24 - 0)²) / 7
+     = 303.71
+```
 
-    where *i* represents the *ith* training example and *M* represents the number of examples.
+---
 
-&nbsp;
+### 3. Calculate the Gradients (Slopes)
 
+#### Weight Slope:
+```
+Weight slope = -119.7
+```
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>L</mi>
-      <mi>o</mi>
-      <mi>s</mi>
-      <mi>s</mi>
-      <mo>=</mo>
-      <mfrac>
-        <mrow>
-          <mo stretchy="false">(</mo>
-          <mn>18</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>15</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>18</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>16</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>15</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>14</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-          <mo>+</mo>
-          <mo stretchy="false">(</mo>
-          <mn>24</mn>
-          <mo>&#x2212;<!-- − --></mo>
-          <mn>0</mn>
-          <msup>
-            <mo stretchy="false">)</mo>
-            <mn>2</mn>
-          </msup>
-        </mrow>
-        <mn>7</mn>
-      </mfrac>
-    </mrow>
-  </mstyle>
-</math>
+#### Bias Slope:
+```
+Bias slope = -34.3
+```
 
-&nbsp;
+---
 
-3. Calculate the slope of tangent to the loss function at each weight and the bias:
+### How to Calculate Gradients
 
-&nbsp;
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>W</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>s</mi>
-      <mi>l</mi>
-      <mi>o</mi>
-      <mi>p</mi>
-      <mi>e</mi>
-      <mo>:</mo>
-      <mo>&#x2212;<!-- − --></mo>
-      <mn>119.7</mn>
-    </mrow>
-  </mstyle>
-</math>
-&nbsp;
+#### Weight Derivative:
 
+```
+∂/∂w [MSE Loss] =
+(1/M) * Σ [2 * (f(w, b)(xᵢ) - yᵢ) * xᵢ]
+```
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>B</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>s</mi>
-      <mi>l</mi>
-      <mi>o</mi>
-      <mi>p</mi>
-      <mi>e</mi>
-      <mo>:</mo>
-      <mo>&#x2212;<!-- − --></mo>
-      <mn>34.3</mn>
-    </mrow>
-  </mstyle>
-&nbsp;
+#### Bias Derivative:
 
+```
+∂/∂b [MSE Loss] =
+(1/M) * Σ [2 * (f(w, b)(xᵢ) - yᵢ)]
+```
 
-**How to calculate slope**
+---
 
-### 1. Weight Derivative
+### 4. Update Parameters (Using Learning Rate = 0.01)
 
-The derivative of the loss function with respect to the weight is written as:
+```
+New weight = old weight - (learning rate * weight slope)
+           = 0 - (0.01 * -119.7) = 1.2
 
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
-    <mrow>
-      <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
-      <mi>w</mi>
-    </mrow>
-  </mfrac>
-  <mfrac>
-    <mn>1</mn>
-    <mi>M</mi>
-  </mfrac>
-  <munderover>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>M</mi>
-    </mrow>
-  </munderover>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>f</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>w</mi>
-      <mo>,</mo>
-      <mi>b</mi>
-    </mrow>
-  </msub>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2212;<!-- − --></mo>
-  <msub>
-    <mi>y</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <msup>
-    <mo stretchy="false">)</mo>
-    <mn>2</mn>
-  </msup>
-</math>
+New bias = old bias - (learning rate * bias slope)
+         = 0 - (0.01 * -34.3) = 0.34
+```
 
-&nbsp;
+After first update:
+```
+New weight = 1.2
+New bias = 0.34
+```
 
-and evaluates to:
+---
 
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mn>1</mn>
-    <mi>M</mi>
-  </mfrac>
-  <munderover>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>M</mi>
-    </mrow>
-  </munderover>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>f</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>w</mi>
-      <mo>,</mo>
-      <mi>b</mi>
-    </mrow>
-  </msub>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2212;<!-- − --></mo>
-  <msub>
-    <mi>y</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2217;<!-- ∗ --></mo>
-  <mn>2</mn>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-</math>
-
-
-### 2. Bias derivative
-
-
-The derivative of the loss function with respect to the bias is written as:
-&nbsp;
-
-
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
-    <mrow>
-      <mi mathvariant="normal">&#x2202;<!-- ∂ --></mi>
-      <mi>b</mi>
-    </mrow>
-  </mfrac>
-  <mfrac>
-    <mn>1</mn>
-    <mi>M</mi>
-  </mfrac>
-  <munderover>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>M</mi>
-    </mrow>
-  </munderover>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>f</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>w</mi>
-      <mo>,</mo>
-      <mi>b</mi>
-    </mrow>
-  </msub>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2212;<!-- − --></mo>
-  <msub>
-    <mi>y</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <msup>
-    <mo stretchy="false">)</mo>
-    <mn>2</mn>
-  </msup>
-</math>
-
-and evaluates to:
-
-
-<math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mfrac>
-    <mn>1</mn>
-    <mi>M</mi>
-  </mfrac>
-  <munderover>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>=</mo>
-      <mn>1</mn>
-    </mrow>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>M</mi>
-    </mrow>
-  </munderover>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>f</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>w</mi>
-      <mo>,</mo>
-      <mi>b</mi>
-    </mrow>
-  </msub>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>x</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2212;<!-- − --></mo>
-  <msub>
-    <mi>y</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mo stretchy="false">(</mo>
-      <mi>i</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </msub>
-  <mo stretchy="false">)</mo>
-  <mo>&#x2217;<!-- ∗ --></mo>
-  <mn>2</mn>
-</math>
-
-
-&nbsp;
-
-
-Move a small amount in the direction of the negative slope to get the next weight and bias. For now, we'll arbitrarily define the "small amount" as 0.01 (learniing rate):
-
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>w</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mo>=</mo>
-      <mi>o</mi>
-      <mi>l</mi>
-      <mi>d</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>w</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mo>&#x2212;<!-- − --></mo>
-      <mo stretchy="false">(</mo>
-      <mi>s</mi>
-      <mi>m</mi>
-      <mi>a</mi>
-      <mi>l</mi>
-      <mi>l</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>a</mi>
-      <mi>m</mi>
-      <mi>o</mi>
-      <mi>u</mi>
-      <mi>n</mi>
-      <mi>t</mi>
-      <mo>&#x2217;<!-- ∗ --></mo>
-      <mi>w</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>s</mi>
-      <mi>l</mi>
-      <mi>o</mi>
-      <mi>p</mi>
-      <mi>e</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>=</mo>
-      <mi>o</mi>
-      <mi>l</mi>
-      <mi>d</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>&#x2212;<!-- − --></mo>
-      <mo stretchy="false">(</mo>
-      <mi>s</mi>
-      <mi>m</mi>
-      <mi>a</mi>
-      <mi>l</mi>
-      <mi>l</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>a</mi>
-      <mi>m</mi>
-      <mi>o</mi>
-      <mi>u</mi>
-      <mi>n</mi>
-      <mi>t</mi>
-      <mo>&#x2217;<!-- ∗ --></mo>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>s</mi>
-      <mi>l</mi>
-      <mi>o</mi>
-      <mi>p</mi>
-      <mi>e</mi>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>w</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mo>=</mo>
-      <mn>0</mn>
-      <mo>&#x2212;<!-- − --></mo>
-      <mo stretchy="false">(</mo>
-      <mn>0.01</mn>
-      <mo stretchy="false">)</mo>
-      <mo>&#x2217;<!-- ∗ --></mo>
-      <mo stretchy="false">(</mo>
-      <mo>&#x2212;<!-- − --></mo>
-      <mn>119.7</mn>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>=</mo>
-      <mn>0</mn>
-      <mo>&#x2212;<!-- − --></mo>
-      <mo stretchy="false">(</mo>
-      <mn>0.01</mn>
-      <mo stretchy="false">)</mo><math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>=</mo>
-      <mn>0.34</mn>
-    </mrow>
-  </mstyle>
-</math>
-      <mo>&#x2217;<!-- ∗ --></mo>
-      <mo stretchy="false">(</mo>
-      <mo>&#x2212;<!-- − --></mo>
-      <mn>34.3</mn>
-      <mo stretchy="false">)</mo>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>w</mi>
-      <mi>e</mi>
-      <mi>i</mi>
-      <mi>g</mi>
-      <mi>h</mi>
-      <mi>t</mi>
-      <mo>=</mo>
-      <mn>1.2</mn>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mstyle mathsize="0.85em">
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>N</mi>
-      <mi>e</mi>
-      <mi>w</mi>
-      <mtext>&#xA0;</mtext>
-      <mi>b</mi>
-      <mi>i</mi>
-      <mi>a</mi>
-      <mi>s</mi>
-      <mo>=</mo>
-      <mn>0.34</mn>
-    </mrow>
-  </mstyle>
-</math>
-
-&nbsp;
-
-Use the new weight and bias to calculate the loss and repeat. Completing the process for six iterations, we'd get the following weights, biases, and losses:
-
+### Iterative Updates (6 Iterations)
 
 | Iteration | Weight | Bias | Loss (MSE) |
 |-----------|--------|------|-------------|
@@ -769,7 +134,12 @@ Use the new weight and bias to calculate the loss and repeat. Completing the pro
 | 5         | 3.47   | 0.82 | 42.1        |
 | 6         | 3.68   | 0.9  | 37.74       |
 
+---
 
-You can see that the loss gets lower with each updated weight and bias. In this example, we stopped after six iterations. In practice, a model trains until it converges. When a model converges, additional iterations don't reduce loss more because gradient descent has found the weights and bias that nearly minimize the loss.
+As you can see, the loss decreases with every iteration as the weights and bias get updated. After enough iterations, the model **converges**, meaning further updates don’t significantly reduce the loss.
 
-![alt text](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/convergence.png)
+![Convergence](https://developers.google.com/static/machine-learning/crash-course/linear-regression/images/convergence.png)
+
+---
+
+Let me know if you'd like a Python code example to simulate this!
