@@ -78,10 +78,5 @@ Ans : To determine if the weights W (and bias b) of a linear classifier are "goo
 There are several loss functions commonly used for linear classifiers. The choice of loss function depends on the type of problem (e.g., regression, binary classification, multi-class classification).
 
 
-1. Mean Squared Error (MSE)
 
-	In linear regression or a regression-based setup for classification (e.g., when we output continuous values instead of discrete class labels), the loss function can be the Mean Squared Error (MSE), which measures the squared difference between the predicted output and the true label.
 
-	\[
-\text{MSE}(y, \hat{y}) = \frac{1}{2} \sum_{i=1}^{N} (y_i - f(x_i, W))^2
-\]
