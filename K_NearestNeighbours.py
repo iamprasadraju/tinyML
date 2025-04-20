@@ -1,6 +1,8 @@
 import numpy as np
 from collections import Counter
-from MNIST_dataloader import load_mnist # Here i used MNIST dataset to demonstrate KNN Algorithm.
+
+
+
 class KNN():
     def __init__(self, k = 3):
         self.k = k
