@@ -11,6 +11,7 @@ class LogisticRegression:
         self.y = None
     
     def sigmoid(self):
-        
+
 
     def fit(self, X, y):
+        pass
