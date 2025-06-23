@@ -1,6 +1,12 @@
+<center># MACHINE LEARNING ROADMAP</center>
+
+
+![ml-roadmap](https://raw.githubusercontent.com/iamprasadraju/MachineLearning_Algorithms/refs/heads/main/assets/ml-roadmap.png)
+
+
 This repo is collection of all Machine Learning Algorithms Implemented using Just Python, Numpy and Math.
 
-# Machine Learning Workflow
+## Machine Learning Workflow
 
 Problem → Data → Preprocessing → Vectorization → Model → Evaluation → Deployment
 
