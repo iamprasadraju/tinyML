@@ -1,4 +1,4 @@
-<center># MACHINE LEARNING ROADMAP</center>
+<h2 align="center">MACHINE LEARNING ROADMAP</h2>
 
 
 ![ml-roadmap](https://raw.githubusercontent.com/iamprasadraju/MachineLearning_Algorithms/refs/heads/main/assets/ml-roadmap.png)
