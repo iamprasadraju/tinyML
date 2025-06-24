@@ -1,7 +1,6 @@
 <center><h1>Data Preprocessing</h1></center>
 
-
-![preprocessing steps](https://raw.githubusercontent.com/iamprasadraju/MachineLearning_Algorithms/refs/heads/main/assets/data-preprocessing.png)
+<center><img width="500" src="https://raw.githubusercontent.com/iamprasadraju/MachineLearning_Algorithms/refs/heads/main/assets/data-preprocessing.png"></center>
 
 
 
