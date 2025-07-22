@@ -8,6 +8,7 @@ import time
 
 # N = 10000 size of array
 n = 10000000
+
 w = np.random.randn(n)
 b = 4
 x = np.random.randn(n)
@@ -39,7 +40,7 @@ print(f"f(x) : {f} -> without Vectorization (N = {n}):  Executed in {(end - star
 # f(x) = W.X + b
 
 start = time.monotonic_ns()
-f = np.dot(w, x) + b #.dot() func works on vectorization using simd intructions
+f = np.dot(w, x) + b #.dot() func works on vectorization using simd intructions -> parallel computing (avx and fma instruction sets)
 end = time.monotonic_ns()
 
 print(f"f(x) : {f} -> with Vectorization (N = {n}):  Executed in {(end - start) / 1e6} ms")
