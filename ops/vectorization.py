@@ -30,7 +30,7 @@ for i in range(len(w) if len(w) == len(x) else exit("W and X have different size
     f = f + w[i] * x[i]
 f = f + b  
 end = time.monotonic_ns()
-print(f"f(x) : {f} -> without Vectorization (N = {n}):  Executed in {(end - start) / 1e6} ms")
+print(f"f(x) : {f} -> without Vectorization (N = {n}):  Executed in {(end - start) / 1e6} millisec")
 
 
 # With Vectorization
@@ -43,7 +43,7 @@ start = time.monotonic_ns()
 f = np.dot(w, x) + b #.dot() func works on vectorization using simd intructions -> parallel computing (avx and fma instruction sets)
 end = time.monotonic_ns()
 
-print(f"f(x) : {f} -> with Vectorization (N = {n}):  Executed in {(end - start) / 1e6} ms")
+print(f"f(x) : {f} -> with Vectorization (N = {n}):  Executed in {(end - start) / 1e6} millisec")
 
 
 

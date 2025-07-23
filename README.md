@@ -36,3 +36,7 @@ Problem → Data → Preprocessing → Vectorization → Model → Evaluation �
 
 
 2. Logistic Regression -> https://developers.google.com/machine-learning/crash-course/logistic-regression
+
+
+3. Support Vector Machines -> https://web.mit.edu/6.034/wwwbob/svm.pdf
+    - video ref -> 
