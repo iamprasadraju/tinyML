@@ -51,11 +51,12 @@ def parser(content):
     #print("\n".join(imports))
 
     # Parsing code between (#start and #end)
-    code_snippet = re.findall(r"#start\n(.*?)#end", content, re.DOTALL)
-    #print("\n\n".join(code_snippet))
+    above_st = re.search(r"([\s\S]*?)#start", content)
+    below_et = re.search(r"#end\s*\n([\s\S]*)", content)
+    print(above_st.group(0), below_et.group(1))
 
-    return "\n".join(imports) , "\n\n".join(code_snippet)
-
+    #return "\n".join(imports) , "\n\n".join(code_snippet)
+"""
 def code_run():
     imports, code = parser(content)
     if "import time" not in imports:
@@ -68,7 +69,8 @@ def code_run():
         "print(f'Time taken for code block: {(et - st) / 1e9:.9f} sec')\n")
     #print(pyfile)
     subprocess.run(["python3",  "-c", pyfile])
-    
+"""
+parser(content)
 
-if __name__ == "__main__":
-    code_run()
+#if __name__ == "__main__":
+#   parser(content)
