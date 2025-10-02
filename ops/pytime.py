@@ -53,26 +53,38 @@ def parser(content):
                     imports.append(f"from {module} import {alias.name}")
 
     # Parsing code between (#start and #end)
-    above_st = re.search(r"([\s\S]*?)#start", content) #code above the #start
-    below_et = re.search(r"#end\s*\n([\s\S]*)", content) #code below the #end
-    middle = re.search(r"#start\s*(.*?)#end\b.*", content, re.DOTALL) #code betweeen #start ... #end
+    above_st = re.search(r"([\s\S]*?)#st", content) #code above the #st
+    below_et = re.search(r"#et\s*\n([\s\S]*)", content) #code below the #et
+    if below_et is None:
+        below_et = ""  # no code below #et
+    else:
+        below_et = below_et.group(1)
 
-    return above_st.group(1), middle.group(1), below_et.group(1)
+    middle = re.search(r"#st\s*(.*?)#et\b.*", content, re.DOTALL) #code betweeen #st ... #et
+
+    if not (above_st and middle):
+        return None
+  
+    return above_st.group(1), middle.group(1), below_et
 
 
 def code_run():
-    above, middle, below = parser(content)
-    if "import time" not in above:
-        above += "\nimport time\n"
-    pyfile = (
-        above + 
-        "\nst = time.monotonic_ns()\n"
-        + middle + 
-        "et = time.monotonic_ns()\n"
-        + below +
-        "print(f'Time taken for code block: {(et - st) / 1e9:.9f} sec')\n")
-    #print(pyfile)
-    subprocess.run(["python3",  "-c", pyfile])
+    result = parser(content)
+    if result is None:
+        print("🔍 Hint: Make sure your file contains both '#st' and '#et' markers like this:\n\n#st\n...your code...\n#et")
+    else:
+        above, middle, below = result
+        if "import time" not in above:
+            above += "\nimport time\n"
+        pyfile = (
+            above + 
+            "\nst = time.monotonic_ns()\n"
+            + middle + 
+            "et = time.monotonic_ns()\n"
+            + below +
+            "print(f'Time taken for code block: {(et - st) / 1e9:.9f} sec')\n")
+        #print(pyfile)
+        subprocess.run(["python3",  "-c", pyfile])
 
 if __name__ == "__main__":
     code_run()
