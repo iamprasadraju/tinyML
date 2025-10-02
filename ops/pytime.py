@@ -20,6 +20,9 @@ else:
 try:
     with open(file_path, "r") as f:
         content = f.read()
+
+        # removed all print() statements
+        content = re.sub(r'^\s*print\(.*?\)\s*$', '', content, flags=re.MULTILINE)
 except FileNotFoundError:
     print("File doesn't exist.")
 except SyntaxError as e:
@@ -48,29 +51,28 @@ def parser(content):
                     imports.append(f"from {module} import {alias.name} as {alias.asname}")
                 else:
                     imports.append(f"from {module} import {alias.name}")
-    #print("\n".join(imports))
 
     # Parsing code between (#start and #end)
-    above_st = re.search(r"([\s\S]*?)#start", content)
-    below_et = re.search(r"#end\s*\n([\s\S]*)", content)
-    print(above_st.group(0), below_et.group(1))
+    above_st = re.search(r"([\s\S]*?)#start", content) #code above the #start
+    below_et = re.search(r"#end\s*\n([\s\S]*)", content) #code below the #end
+    middle = re.search(r"#start\s*(.*?)#end\b.*", content, re.DOTALL) #code betweeen #start ... #end
 
-    #return "\n".join(imports) , "\n\n".join(code_snippet)
-"""
+    return above_st.group(1), middle.group(1), below_et.group(1)
+
+
 def code_run():
-    imports, code = parser(content)
-    if "import time" not in imports:
-        imports += "\nimport time\n"
+    above, middle, below = parser(content)
+    if "import time" not in above:
+        above += "\nimport time\n"
     pyfile = (
-        imports + 
+        above + 
         "\nst = time.monotonic_ns()\n"
-        + code + 
+        + middle + 
         "et = time.monotonic_ns()\n"
+        + below +
         "print(f'Time taken for code block: {(et - st) / 1e9:.9f} sec')\n")
     #print(pyfile)
     subprocess.run(["python3",  "-c", pyfile])
-"""
-parser(content)
 
-#if __name__ == "__main__":
-#   parser(content)
+if __name__ == "__main__":
+    code_run()
