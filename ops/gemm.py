@@ -9,8 +9,24 @@ N = 1024
 A = np.random.rand(N, N).astype(np.float32)
 B = np.random.rand(N, N).astype(np.float32)
 
+"""
+FLOP(Floating point operations)
 
-#FLOP
+For a Square Matrix
+
+    - Flops per element 
+
+        - Multiplication: n
+        - Additions: n - 1
+
+        Total Flops per element: n+(n-1) = 2n - 1
+
+    Total elements = n^2
+
+so, Total flops = n^2 * (2n - 1) = 2n^3
+
+""" 
+
 flop = 2*N*N*N
 #print(f"{flop / 1e9:.2f} GFLOPS")
 
