@@ -15,28 +15,28 @@ RESET = "\033[0m"
 DEBUG = int(os.environ.get("DEBUG", 0))
 N = int(os.environ.get("N", 1024))
 
-def DEBUG_PRINT(*args):
-	ops = N * N * N
-	ops_format = "GEMM"  + GREY + "_" + BLUE + str(N) + GREY + "_" + str(ops) + GREY + "_" + CYAN + "32" + RESET   
-	flops = "     "  + YELLOW + f"{args[0]:.0f}" + RESET + " GFLOP/S" 
-	time = "     "  + GREEN + f"{args[1]:.3f}" + RESET + " SEC"
-	
-	if DEBUG == 1:
-		print(ops_format, flops, time)
-        
-
-
-def FLOPS(func, N):
-	st = time.monotonic()
-	ops = func(N)
-	et = time.monotonic()
-	
-	t = et - st
-	flops = ops / t
-	
-	GFLOPS = flops / 1e9
-	return (GFLOPS, t)
-	
+def DEBUG_PRINT(func):
+	def enhanced_debug(*args):
+		st = time.monotonic()
+		func(*args)
+		et = time.monotonic()
+		t = et - st
+		ops = N * N * N 	# calcute flop/s
+		flops = ops / t
+		GFLOPS = flops / 1e9   
+		
+		ops_format = RED + "GEMM"  + GREY + "_" + BLUE + str(N) + GREY + "_" + str(ops) + GREY + "_" + CYAN + "32" + RESET   
+		flops_format = "     "  + YELLOW + f"{GFLOPS:.0f}" + RESET + " GFLOP/S" 
+		time_format = "     "  + GREEN + f"{t:.3f}" + RESET + " SEC"
+		if DEBUG == 1:
+			print(ops_format, flops_format, time_format)
+	return enhanced_debug	
 
 	
-	
+def timeit(func):
+	def enhanced_fuc(*args):
+		st = time.monotonic()
+		func(*args)
+		et = time.monotonic()
+		print(et - st)
+	return enhanced_fuc
