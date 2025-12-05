@@ -23,13 +23,17 @@ def DEBUG_PRINT(func):
 		t = et - st
 		ops = N * N * N 	# calcute flop/s
 		flops = ops / t
-		GFLOPS = flops / 1e9   
+		GFLOPS = flops / 1e9 
+		
+		# Memory allocated
+		memory = 3 * N * N * 4 / (1024 * 1024) #fp32 and MB
 		
 		ops_format = RED + "GEMM"  + GREY + "_" + BLUE + str(N) + GREY + "_" + str(ops) + GREY + "_" + CYAN + "32" + RESET   
 		flops_format = "     "  + YELLOW + f"{GFLOPS:.0f}" + RESET + " GFLOP/S" 
 		time_format = "     "  + GREEN + f"{t:.3f}" + RESET + " SEC"
+		memory_format = "     " + MAGENTA + f"{memory:.2f}" + RESET + " MB" 
 		if DEBUG == 1:
-			print(ops_format, flops_format, time_format)
+			print(ops_format, flops_format, time_format, memory_format)
 	return enhanced_debug	
 
 	
